@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP via Email</title>
+    <style>
+        body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin: 20px;
+}
+
+h1 {
+    color: #007BFF;
+}
+
+label {
+    display: block;
+    margin: 10px 0;
+}
+
+input {
+    width: 200px;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#result {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+    </style>
+</head>
+<body>
+    <h1>OTP via Email</h1>
+    <form id="otpForm">
+        <label for="email">Enter your email:</label>
+        <input type="email" id="email" required>
+        <button id="sendOTP">Send OTP</button><br>
+        <label for="otp">Enter the OTP sent to your email:</label>
+        <input type="text" id="otp" required>
+        <button id="verifyOTP">Verify OTP</button>
+    </form>
+    <div id="result"></div>
+    <script>
+        document.getElementById("sendOTP").addEventListener("click", function(event) {
+    event.preventDefault();
+    const email = document.getElementById("email").value;
+    
+    // Simulate sending OTP via email (replace with actual email sending logic)
+    // In this simplified example, we generate a random OTP and display it on the page
+    const otp = Math.floor(100000 + Math.random() * 900000);
+    document.getElementById("result").innerText = `OTP sent to ${email}: ${otp}`;
+});
+
+document.getElementById("verifyOTP").addEventListener("click", function(event) {
+    event.preventDefault();
+    const enteredOTP = document.getElementById("otp").value;
+    // Here, you would typically send the entered OTP to the server for verification
+    // In this example, we compare it with the displayed OTP
+    //const displayedOTP = document.getElementById("result").innerText.split(": ")[1];
+    const displayedOTP = document.getElementById("result").innerText.split(": ")[1];
+    
+    if (enteredOTP === displayedOTP) {
+        document.getElementById("result").innerText = "OTP verified successfully!";
+    } else {
+        document.getElementById("result").innerText = "OTP verification failed. Please try again.";
+    }
+});
+
+    </script>
+</body>
+</html>
